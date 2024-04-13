@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budgeting & Net Worth Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Budgeting & Net Worth Tracker</h1>
+    </header>
+    <main>
+        <section id="assets">
+            <h2>Assets</h2>
+            <div id="assetInputs">
+                <!-- Inputs for assets will be added dynamically -->
+            </div>
+            <button onclick="addAssetInput()">Add Asset</button>
+        </section>
+        <section id="liabilities">
+            <h2>Liabilities</h2>
+            <div id="liabilityInputs">
+                <!-- Inputs for liabilities will be added dynamically -->
+            </div>
+            <button onclick="addLiabilityInput()">Add Liability</button>
+        </section>
+        <button onclick="saveData()">Save</button>
+        <div id="netWorth"></div>
+        <canvas id="pieChart" width="400" height="400"></canvas>
+        <div id="assetList"></div> <!-- Move this line inside the <main> section -->
+    </main>
+    <!-- Include Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Display pie chart immediately
+        fetchAssets();
+    </script>
+</body>
+</html>

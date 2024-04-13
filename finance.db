@@ -1,0 +1,17 @@
+-- Create a SQLite database file (e.g., finance.db)
+
+-- Create a table for assets
+CREATE TABLE assets (
+    id INTEGER PRIMARY KEY,
+    amount REAL
+);
+
+-- Create a table for liabilities
+CREATE TABLE liabilities (
+    id INTEGER PRIMARY KEY,
+    amount REAL
+);
+
+-- Insert some prefilled information (optional)
+INSERT INTO assets (amount) VALUES (1000), (2000), (3000);
+INSERT INTO liabilities (amount) VALUES (500), (1000);

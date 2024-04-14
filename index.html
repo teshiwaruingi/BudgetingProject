@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budgeting & Net Worth Tracker</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="badges.html">Badges</a></li>
+            </ul>
+        </nav>
         <h1>Budgeting & Net Worth Tracker</h1>
     </header>
     <main>
+        <section>
+            <h2>Current Networth</h2>
+        </section>
         <section id="assets">
             <h2>Assets</h2>
             <div id="assetInputs">
@@ -25,17 +34,39 @@
             </div>
             <button onclick="addLiabilityInput()">Add Liability</button>
         </section>
+        <section id="expenses">
+            <h2>Expenses</h2>
+            <div id="expenseInputs">
+                <!-- Inputs for expenses will be added dynamically -->
+            </div>
+            <button onclick="addExpenseInput()">Add Expense</button>
+        </section>
+        <section id="budget">
+            <h2>Budget Tracker</h2>
+            <div id="budgetInputs">
+                <!-- Inputs for budget categories will be added dynamically -->
+            </div>
+            <button onclick="addBudgetInput()">Add Budget Category</button>
+        </section>
         <button onclick="saveData()">Save</button>
         <div id="netWorth"></div>
         <canvas id="pieChart" width="400" height="400"></canvas>
-        <div id="assetList"></div> <!-- Move this line inside the <main> section -->
+        <canvas id="barChart" width="400" height="400"></canvas>
+        <div id="assetList"></div>
+        <div id="goalTracker">
+            <h2>Goal Tracker</h2>
+            <!-- Add goal setting and progress display here -->
+        </div>
     </main>
     <!-- Include Chart.js from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
     <script>
-        // Display pie chart immediately
+        // Display pie chart and bar chart immediately
         fetchAssets();
+        fetchExpenses();
+        fetchBudgets();
+        displayBarChart();
     </script>
 </body>
 </html>

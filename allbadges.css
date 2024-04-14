@@ -9,20 +9,28 @@ body {
     background-color: #f4f4f4; /* Light gray background */
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content horizontally */
+}
+
 header {
     background-color: #333;
     color: #fff;
     padding: 0.5rem 1rem;
+    width: 100%;
 }
 
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center; /* Center the navigation links horizontally */
 }
 
 nav ul li {
-    display: inline;
     margin-right: 20px;
 }
 
@@ -38,7 +46,6 @@ nav ul li a:hover {
 
 main {
     max-width: 800px;
-    margin: 0 auto;
     padding: 20px;
     background-color: #fff; /* White background */
     border-radius: 10px;
@@ -49,7 +56,7 @@ h1, h2 {
     color: #333; /* Dark gray text color */
 }
 
-/* All badges page specific styles */
+/* Badge page specific styles */
 
 .badge-container {
     display: grid;

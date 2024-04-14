@@ -12,6 +12,7 @@
             <ul>
                 <li><a href="index.html">Dashboard</a></li>
                 <li><a href="badges.html">Badges</a></li>
+                <li><a href="budget.html">My Budget</a></li> 
             </ul>
         </nav>
         <h1>Budgeting & Net Worth Tracker</h1>
@@ -29,28 +30,30 @@
             <h2>Goal Tracker</h2>
             <!-- Add goal setting and progress display here -->
         </div>
-        <section id="assets">
-            <h2>Assets</h2>
-            <div id="savings">
-                <label for="savings">Savings Account:</label>
-                <input type="number" id="savingsAmount" placeholder="Enter amount">
-            </div>
-            <div id="checking">
-                <label for="checking">Checking Account:</label>
-                <input type="number" id="checkingAmount" placeholder="Enter amount">
-            </div>
-            <div id="investment">
-                <label for="investment">Investment Account:</label>
-                <input type="number" id="investmentAmount" placeholder="Enter amount">
-            </div>
-            <button onclick="saveData()">Save</button>
-        </section>
-        <section id="liabilities">
-            <h2>Liabilities</h2>
-            <div id="liabilityInputs">
-                <!-- Inputs for liabilities will be added dynamically -->
-            </div>
-            <button onclick="addLiabilityInput()">Add Liability</button>
+        <section class="assets-liabilities-container">
+            <section id="assets">
+                <h2>Assets</h2>
+                <div id="savings">
+                    <label for="savings">Savings Account:</label>
+                    <input type="number" id="savingsAmount" placeholder="Enter amount">
+                </div>
+                <div id="checking">
+                    <label for="checking">Checking Account:</label>
+                    <input type="number" id="checkingAmount" placeholder="Enter amount">
+                </div>
+                <div id="investment">
+                    <label for="investment">Investment Account:</label>
+                    <input type="number" id="investmentAmount" placeholder="Enter amount">
+                </div>
+                <button onclick="saveData()">Save</button>
+            </section>
+            <section id="liabilities">
+                <h2>Liabilities</h2>
+                <div id="liabilityInputs">
+                    <!-- Inputs for liabilities will be added dynamically -->
+                </div>
+                <button onclick="addLiabilityInput()">Add Liability</button>
+            </section>
         </section>
         <section id="expenses">
             <h2>Expenses</h2>

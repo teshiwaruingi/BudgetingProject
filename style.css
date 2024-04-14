@@ -42,7 +42,7 @@ header {
 }
 
 main {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff; /* White background */
@@ -88,4 +88,35 @@ canvas {
     background-color: #f9f9f9; /* Light gray background */
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Soft shadow */
+}
+
+/* style.css */
+
+/* Other styles remain the same */
+
+.assets-liabilities-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Add some space between the sections */
+}
+
+.assets-liabilities-container section {
+    flex: 1; /* Each section takes up equal space */
+    margin-right: 20px; /* Add some space between the sections */
+}
+
+/* Adjust styles for the Assets and Liabilities sections if needed */
+#assets,
+#liabilities,
+#expenses {
+    background-color: #f9f9f9; /* Light gray background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Soft shadow */
+}
+
+#assets h2,
+#liabilities h2,
+#expenses h2 {
+    margin-bottom: 10px;
 }

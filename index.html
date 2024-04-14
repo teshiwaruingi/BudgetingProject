@@ -20,12 +20,30 @@
         <section>
             <h2>Current Networth</h2>
         </section>
+        <section class="charts-container">
+            <canvas id="pieChart" width="400" height="400"></canvas>
+            <canvas id="barChart" width="400" height="400"></canvas>
+        </section>
+        <div id="assetList"></div>
+        <div id="goalTracker">
+            <h2>Goal Tracker</h2>
+            <!-- Add goal setting and progress display here -->
+        </div>
         <section id="assets">
             <h2>Assets</h2>
-            <div id="assetInputs">
-                <!-- Inputs for assets will be added dynamically -->
+            <div id="savings">
+                <label for="savings">Savings Account:</label>
+                <input type="number" id="savingsAmount" placeholder="Enter amount">
             </div>
-            <button onclick="addAssetInput()">Add Asset</button>
+            <div id="checking">
+                <label for="checking">Checking Account:</label>
+                <input type="number" id="checkingAmount" placeholder="Enter amount">
+            </div>
+            <div id="investment">
+                <label for="investment">Investment Account:</label>
+                <input type="number" id="investmentAmount" placeholder="Enter amount">
+            </div>
+            <button onclick="saveData()">Save</button>
         </section>
         <section id="liabilities">
             <h2>Liabilities</h2>
@@ -48,15 +66,7 @@
             </div>
             <button onclick="addBudgetInput()">Add Budget Category</button>
         </section>
-        <button onclick="saveData()">Save</button>
         <div id="netWorth"></div>
-        <canvas id="pieChart" width="400" height="400"></canvas>
-        <canvas id="barChart" width="400" height="400"></canvas>
-        <div id="assetList"></div>
-        <div id="goalTracker">
-            <h2>Goal Tracker</h2>
-            <!-- Add goal setting and progress display here -->
-        </div>
     </main>
     <!-- Include Chart.js from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -36,6 +36,13 @@ nav ul li a:hover {
 h1, h2 {
     margin-bottom: 10px;
 }
+input[type="number"] {
+    width: calc(100% - 450px); /* Adjusting for padding */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px;
+}
 
 button {
     padding: 10px 20px;

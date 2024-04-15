@@ -108,7 +108,8 @@ canvas {
 /* Adjust styles for the Assets and Liabilities sections if needed */
 #assets,
 #liabilities,
-#expenses {
+#expenses,
+#budget {
     background-color: #f9f9f9; /* Light gray background */
     padding: 20px;
     border-radius: 10px;

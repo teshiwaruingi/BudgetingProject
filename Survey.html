@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debt Application Satisfaction Survey</title>
+    <link rel="stylesheet" href="survey.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="getstarted.html">Home</a></li>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="badges.html">Badges</a></li>
+                <li><a href="budget.html">My Budget</a></li> 
+                <li><a href="Survey.html">Survey</a></li>
+
+            </ul>
+        </nav>
+        <h1>Budgeting & Net Worth Tracker</h1>
+    </header>
+    <div class="container">
+        <h1>Debt Application Satisfaction Survey</h1>
+        <form id="surveyForm" action="index.html">
+            <div class="container">
+                <div class="question">
+                    <label for="q1">1. How satisfied are you with the overall user experience of the debt application?</label>
+                    <select id="q1" name="q1">
+                        <option value="very-satisfied">Very Satisfied</option>
+                        <option value="satisfied">Satisfied</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="dissatisfied">Dissatisfied</option>
+                        <option value="very-dissatisfied">Very Dissatisfied</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label for="q2">2. How easy is it to navigate and find information within the application?</label>
+                    <select id="q2" name="q2">
+                        <option value="very-easy">Very Easy</option>
+                        <option value="easy">Easy</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="difficult">Difficult</option>
+                        <option value="very-difficult">Very Difficult</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label for="q3">3. How effective is the application in helping you manage and reduce your debt?</label>
+                    <select id="q3" name="q3">
+                        <option value="very-effective">Very Effective</option>
+                        <option value="effective">Effective</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="ineffective">Ineffective</option>
+                        <option value="very-ineffective">Very Ineffective</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label for="q4">4. How likely are you to recommend this application to others?</label>
+                    <select id="q4" name="q4">
+                        <option value="very-likely">Very Likely</option>
+                        <option value="likely">Likely</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="unlikely">Unlikely</option>
+                        <option value="very-unlikely">Very Unlikely</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label for="q5">5. To what extent has the application helped you in achieving your debt-related goals?</label>
+                    <select id="q5" name="q5">
+                        <option value="very-helpful">Very Helpful</option>
+                        <option value="helpful">Helpful</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="not-helpful">Not Helpful</option>
+                        <option value="very-not-helpful">Very Not Helpful</option>
+                    </select>
+                </div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

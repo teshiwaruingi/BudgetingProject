@@ -12,12 +12,14 @@ header {
     padding: 0.5rem 1rem;
 }
 
+
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center; /* Center the navigation links horizontally */
 }
-
 nav ul li {
     display: inline;
     margin-right: 20px;

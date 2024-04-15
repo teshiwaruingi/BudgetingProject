@@ -1,0 +1,19 @@
+{
+    "assets": {
+        "savings": 1000,
+        "checking": 2000,
+        "investment": 5000
+    },
+    "liabilities": {
+        "loan": 3000,
+        "credit_card": 1000
+    },
+    "expenses": [
+        {"name": "Rent", "amount": 500},
+        {"name": "Groceries", "amount": 300},
+        {"name": "Utilities", "amount": 200},
+        {"name": "Entertainment", "amount": 600},
+        {"name": "Transportation", "amount": 400}
+    ],
+    "budgets": [1000, 800, 600]
+}

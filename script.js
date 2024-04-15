@@ -1,8 +1,23 @@
 // Modify script.js
+import sendSMS from "sms.js"
 
 let expenses = [];
 let budgets = [];
 let goals = [];
+// Example usage:
+const initialData = {
+    assets: {
+        savings: 1000,
+        checking: 2000,
+        investment: 5000
+    },
+    liabilities: {
+        loan: 3000,
+        credit_card: 1000
+    },
+    expenses: [500, 300, 200],
+    budgets: [1000, 800, 600]
+};
 
 function addAssetInput() {
     const input = document.createElement('input');
@@ -34,10 +49,6 @@ function addBudgetInput() {
     input.placeholder = 'Enter budget amount';
     document.getElementById('budgetInputs').appendChild(input);
     budgets.push(input);
-}
-
-function saveData() {
-    // Implement your save logic here
 }
 
 // Function to fetch and display expenses
@@ -98,5 +109,24 @@ function displayBarChart() {
     });
 }
 
+// Function to write data to the JSON file
+function saveData(data) {
+    const jsonData = JSON.stringify(data, null, 2); // Convert data to JSON format
+    fs.writeFileSync('finance_data.json', jsonData); // Write JSON data to file
+}
+
+// Function to read data from the JSON file
+// function loadData() {
+//     try {
+//         const jsonData = fs.readFileSync('finance_data.json'); // Read JSON data from file
+//         return JSON.parse(jsonData); // Parse JSON data to JavaScript object
+//     } catch (error) {
+//         console.error('Error reading data:', error);
+//         return {}; // Return an empty object if file read fails
+//     }
+// }
+
 // Call the displayGoalProgress() function after saving data
-saveData();
+//saveData();
+// Save initial data to the file
+saveData(initialData);

@@ -25,7 +25,58 @@
             </div>
             <button onclick="editBudget()">Edit Budget</button>
         </section>
+    
+        <section class="assets-liabilities-container">
+            <section id="assets">
+                <h2>Assets</h2>
+                <button onclick="addAssetInput()">Add Asset</button>
+            </section>
+            
+            <section id="expenses">
+                <h2>Expenses</h2>
+                <div id="expenseInputs">
+                    <!-- Inputs for expenses will be added dynamically -->
+                </div>
+                <button onclick="addExpenseInput()">Add Expense</button>
+            </section>
+    
+            <section id="liabilities">
+                <h2>Liabilities</h2>
+                <div id="liabilityInputs">
+                    <!-- Inputs for liabilities will be added dynamically -->
+                </div>
+                <button onclick="addLiabilityInput()">Add Liability</button>
+            </section>
+        </section>
+
+        <section class="accounts-categories-container">
+            <section id="accounts">
+                <h2>Bank Accounts</h2>
+                <div id="savings">
+                    <label for="savings">Savings Account:</label>
+                    <input type="number" id="savingsAmount" placeholder="Enter amount">
+                </div>
+                <div id="checking">
+                    <label for="checking">Checking Account:</label>
+                    <input type="number" id="checkingAmount" placeholder="Enter amount">
+                </div>
+                <div id="investment">
+                    <label for="investment">Investment Account:</label>
+                    <input type="number" id="investmentAmount" placeholder="Enter amount">
+                </div>
+                <button onclick="saveData()">Save</button>
+            </section>
+        
+            <section id="budgetCategories">
+                <h2>Budget Tracker</h2>
+                <div id="budgetInputs">
+                    <!-- Inputs for budget categories will be added dynamically -->
+                </div>
+                <button onclick="addBudgetInput()">Add Budget Category</button>
+            </section>
+        </section>
+
     </main>
-    <script src="script.js"></script> <!-- Include script file if needed -->
+    
 </body>
 </html>

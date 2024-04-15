@@ -66,3 +66,56 @@ button:hover {
 #budgetDetails h3 {
     margin-top: 0;
 }
+
+
+/* style.css */
+
+.assets-liabilities-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Add some space between the sections */
+}
+
+.assets-liabilities-container section {
+    flex: 1; /* Each section takes up equal space */
+}
+
+#assets,
+#liabilities,
+#expenses {
+    background-color: #f9f9f9; /* Light gray background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Soft shadow */
+    margin-bottom: 20px; /* Add some space between the sections */
+}
+
+
+
+.accounts-categories-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.accounts-categories-container section {
+    flex: 1;
+}
+
+#accounts,
+#budgetCategories {
+    background-color: #f9f9f9; /* Light gray background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Soft shadow */
+    margin-bottom: 20px;
+}
+
+#budgetCategories {
+    background-color: #f9f9f9; /* Light gray background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Soft shadow */
+    margin-bottom: 20px; /* Add some space between the sections */
+}
+

@@ -4,6 +4,22 @@ let expenses = [];
 let budgets = [];
 let goals = [];
 
+function addAssetInput() {
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.placeholder = 'Enter asset amount';
+    document.getElementById('assetInputs').appendChild(input);
+    assets.push(input);
+}
+
+function addLiabilityInput() {
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.placeholder = 'Enter liability amount';
+    document.getElementById('liabilityInputs').appendChild(input);
+    liabilities.push(input);
+}
+
 function addExpenseInput() {
     const input = document.createElement('input');
     input.type = 'number';
@@ -18,6 +34,10 @@ function addBudgetInput() {
     input.placeholder = 'Enter budget amount';
     document.getElementById('budgetInputs').appendChild(input);
     budgets.push(input);
+}
+
+function saveData() {
+    // Implement your save logic here
 }
 
 // Function to fetch and display expenses

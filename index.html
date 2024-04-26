@@ -23,106 +23,255 @@
     <main>
         <section>
             <h2 id="netWorth">Current Networth</h2>
-            <button onclick="sendSMS()">Financial Standing Check</button>
+            <!-- <button onclick="sendSMS()">Financial Standing Check</button> -->
         </section>
         <section class="charts-container">
-            <canvas id="pieChart" width="400" height="400"></canvas>
-            <canvas id="barChart" width="400" height="400"></canvas>
+            <canvas id="pieChart" width="500" height="500"></canvas>
+            <!-- <canvas id="AssetPieChart" width="300" height="300"></canvas> -->
         </section>
         <div id="assetList"></div>
-        <div id="goalTracker">
+        <!-- <div id="goalTracker">
             <h2>Goal Tracker</h2>
-            <!-- Add goal setting and progress display here -->
-        </div>
+            Add goal setting and progress display here 
+        </div> -->
         <section class="assets-liabilities-container">
             <section id="assets">
                 <h2>Assets</h2>
-                <div id="savings">
-                    <!-- <label for="savings">Savings Account:</label> -->
-                    <!-- <input type="number" id="savingsAmount" placeholder="Enter amount"> -->
+                <div id="user-assets">
+                    <!-- Inputs for assets will be added dynamically -->
                 </div>
-                <div id="checking">
-                    <!-- <label for="checking">Checking Account:</label> -->
-                    <!-- <input type="number" id="checkingAmount" placeholder="Enter amount"> -->
-                </div>
-                <div id="investment">
-                    <!-- <label for="investment">Investment Account:</label> -->
-                    <!-- <input type="number" id="investmentAmount" placeholder="Enter amount"> -->
-                </div>
-                <!-- <button onclick="saveData()">Save</button> -->
             </section>
+            
             <section id="liabilities">
                 <h2>Liabilities</h2>
-                <div id="loanAmount">
-                    <!-- Inputs for liabilities will be added dynamically -->
-                </div>
-                <div id="creditCardAmount">
+                <div id='user-liabilities'>
                     <!-- Inputs for liabilities will be added dynamically -->
                 </div>
                 <!-- <button onclick="addLiabilityInput()">Add Liability</button> -->
             </section>
+            <section id="expenses">
+                <h2>Expenses</h2>
+                <div id="user-expenses">
+                    <!-- Inputs for expenses will be added dynamically -->
+                </div>
+                <!-- <button onclick="addExpenseInput()">Add Expense</button> -->
+            </section>
         </section>
-        <section id="expenses">
-            <h2>Expenses</h2>
-            <div id="expenseInputs">
-                <!-- Inputs for expenses will be added dynamically -->
-            </div>
-            <!-- <button onclick="addExpenseInput()">Add Expense</button> -->
+
+        <section class="assets-liabilities-container">
+    
+            <section id="accounts">
+                <h2>Bank Accounts</h2>
+                    <div id="user-accounts">
+                        <!-- <label for="savings">Savings Account:</label> -->
+                        <!-- <input type="number" id="savingsAmount" placeholder="Enter amount"> -->
+                    </div>
+            </section>
         </section>
-        <section id="budget">
+        
+        <!-- <section id="budget">
             <h2>Budget Categories</h2>
             <div id="budgetInputs">
-                <!-- Inputs for budget categories will be added dynamically -->
+                Inputs for budget categories will be added dynamically
             </div>
-            <!-- <button onclick="addBudgetInput()">Add Budget Category</button> -->
-        </section>
+            <button onclick="addBudgetInput()">Add Budget Category</button>
+        </section> -->
         
     </main>
     <!-- Include Chart.js from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
-    <script src="sms.js"></script>
+    <!-- <script src="sms.js"></script> -->
     <script>
         // Display pie chart and bar chart immediately
-        fetchAssets();
-        fetchExpenses();
-        fetchBudgets();
-        displayBarChart();
+        // fetchAssets();
+        // fetchExpenses();
+        // fetchBudgets();
+        // displayBarChart();
     </script>
     <script>
-        fetch('./finance_data.json')
-            .then(res => res.json())
-            .then(data => {
-                const financialData = data;
+        // Retrieve financial data from localStorage
+        let financialData = localStorage.getItem('financeData');
 
-        
-        // Populate assets section
-        document.getElementById('savings').innerHTML += `<label for="savings">Savings Account: $${financialData.assets.savings}</label>`;
-        document.getElementById('checking').innerHTML += `<label for="checking">Checking Account: $${financialData.assets.checking}</label>`;
-        document.getElementById('investment').innerHTML += `<label for="investment">Investment Account: $${financialData.assets.investment}</label>`;
+        // If financialData doesn't exist or is null, initialize it with default values
+        if (!financialData) {
+            financialData = {
+                assets: {},
+                liabilities: {},
+                expenses: {},
+                accounts: {}
+            };
 
-        // Populate liabilities section
-        document.getElementById('loanAmount').innerHTML += `<label for="loan">Loan Amount: $${financialData.liabilities.loan}</label>`;
-        document.getElementById('creditCardAmount').innerHTML += `<label for="creditCard">Credit Card Amount: $${financialData.liabilities.credit_card}</label>`;
+            // Save the initialized financialData to localStorage
+            localStorage.setItem('financeData', JSON.stringify(financialData));
+        }
+        // Check if financialDataString is null or undefined
+        if (financialData) {
+            financialData = JSON.parse(financialData); // Remove 'const' here
+            
+            // Populate assets section if financialData has 'assets' property
+            if (financialData.assets) {
+                const assetsContainer = document.getElementById('user-assets');
+                assetsContainer.innerHTML = ''; // Clear previous content
+                
+                // Loop through each asset and create HTML elements to display them
+                for (const [assetType, amount] of Object.entries(financialData.assets)) {
+                    const label = document.createElement('label');
+                    label.textContent = `${assetType}: $${amount}`;
+                    label.style.display = 'block';
+                    assetsContainer.appendChild(label);
+                }
+                
+                const liabilitiesContainer = document.getElementById('user-liabilities');
+                liabilitiesContainer.innerHTML = ''; // Clear previous content
 
-        // Populate expenses section
-        const expenseInputsDiv = document.getElementById('expenseInputs');
-        financialData.expenses.forEach(expense => {
-            const div = document.createElement('div');
-            div.innerHTML = `<label>${expense.name}:</label> $${expense.amount}`;
-            expenseInputsDiv.appendChild(div);
-        });
+                // Loop through each asset and create HTML elements to display them
+                console.log("expense data displayed 0 ", financialData.liabilities);
+                for (const [liabilityType, amount] of Object.entries(financialData.liabilities)) {
+                    const label = document.createElement('label');
+                    label.textContent = `${liabilityType}: $${amount}`;
+                    label.style.display = 'block';
+                    liabilitiesContainer.appendChild(label);
+                }
 
-        // Calculate net worth
-        const assetsTotal = Object.values(financialData.assets).reduce((total, amount) => total + amount, 0);
-        const liabilitiesTotal = Object.values(financialData.liabilities).reduce((total, amount) => total + amount, 0);
-        const netWorth = assetsTotal - liabilitiesTotal;
+                const expenseContainer = document.getElementById('user-expenses');
+                expenseContainer.innerHTML = ''; // Clear previous content
 
-        // Display net worth
-        document.getElementById('netWorth').innerHTML = `<section><h2>Current Net Worth: $${netWorth}</h2></section>`;
-    });
-        
+                // Populate expenses section
+                console.log("expense data displayed 0 ", financialData.expenses);
+                for (const [expenseType, amount] of Object.entries(financialData.expenses)) {
+                    const label = document.createElement('label');
+                    label.textContent = `${expenseType}: $${amount}`;
+                    label.style.display = 'block';
+                    expenseContainer.appendChild(label);
+                    
+                }
+
+                const accountContainer = document.getElementById('user-accounts');
+                accountContainer.innerHTML = ''; // Clear previous content
+
+
+                for (const [accountType, amount] of Object.entries(financialData.accounts)) {
+                    const label = document.createElement('label');
+                    label.textContent = `${accountType}: $${amount}`;
+                    label.style.display = 'block';
+                    accountContainer.appendChild(label);
+                    
+                }
+
+                const expenseData = [];
+                const expenseLabels = [];
+
+                // Populate expenseData and expenseLabels
+                for (const [expenseType, amount] of Object.entries(financialData.expenses)) {
+                    expenseLabels.push(expenseType);
+                    expenseData.push(amount);
+                }
+
+                // Get canvas element for the pie chart
+                const pieChartCanvas = document.getElementById('pieChart');
+                const ctx = pieChartCanvas.getContext('2d');
+
+                // Create pie chart
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: expenseLabels,
+                        datasets: [{
+                            label: 'Expenses',
+                            data: expenseData,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.5)',
+                                'rgba(54, 162, 235, 0.5)',
+                                'rgba(255, 206, 86, 0.5)',
+                                'rgba(75, 192, 192, 0.5)',
+                                'rgba(153, 102, 255, 0.5)',
+                                'rgba(255, 159, 64, 0.5)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        maintainAspectRatio: true // Ensures chart maintains its size within the canvas
+                    }
+                });
+                const assetData = [];
+                const assetLabels = [];
+
+                // // Populate expenseData and expenseLabels
+                // for (const [assetType, amount] of Object.entries(financialData.assets)) {
+                //     assetLabels.push(assetType);
+                //     assetData.push(amount);
+                // }
+
+                // // Get canvas element for the pie chart
+                // const assetPieChartCanvas = document.getElementById('assetPieChart');
+                // const assetctx = pieChartCanvas.getContext('2d');
+
+                // // Create pie chart
+                // new Chart(assetctx, {
+                //     type: 'pie',
+                //     data: {
+                //         labels: assetPieChartCanvas,
+                //         datasets: [{
+                //             label: 'Expenses',
+                //             data: assetData,
+                //             backgroundColor: [
+                //                 'rgba(255, 99, 132, 0.5)',
+                //                 'rgba(54, 162, 235, 0.5)',
+                //                 'rgba(255, 206, 86, 0.5)',
+                //                 'rgba(75, 192, 192, 0.5)',
+                //                 'rgba(153, 102, 255, 0.5)',
+                //                 'rgba(255, 159, 64, 0.5)'
+                //             ],
+                //             borderColor: [
+                //                 'rgba(255, 99, 132, 1)',
+                //                 'rgba(54, 162, 235, 1)',
+                //                 'rgba(255, 206, 86, 1)',
+                //                 'rgba(75, 192, 192, 1)',
+                //                 'rgba(153, 102, 255, 1)',
+                //                 'rgba(255, 159, 64, 1)'
+                //             ],
+                //             borderWidth: 1
+                //         }]
+                //     },
+                //     options: {
+                //         responsive: false,
+                //         maintainAspectRatio: true // Ensures chart maintains its size within the canvas
+                //     }
+                // });
+
+                // Calculate net worth
+                console.log('I ran');
+                const assetsTotal = Object.values(financialData.assets).reduce((total, amount) => total + amount, 0);
+                const accountsTotal = Object.values(financialData.accounts).reduce((total, amount) => total + amount, 0); // Sum of money in accounts
+                const liabilitiesTotal = Object.values(financialData.liabilities).reduce((total, amount) => total + amount, 0);
+                const netWorth = assetsTotal + accountsTotal - liabilitiesTotal; // Add accountsTotal to assetsTotal
+                console.log('networth', netWorth);
+            
+                // Display net worth
+                document.getElementById('netWorth').innerHTML = `<section><h2>Current Net Worth: $${netWorth}</h2></section>`;
+
+
+            } else {
+                console.error("Financial data does not contain 'assets' property");
+            }
+        } else {
+            console.error("No financial data found in localStorage");
+        }
+    
+
     </script>
+    
     <script>
         function sendSMS() {
             const accountSid = 'something';

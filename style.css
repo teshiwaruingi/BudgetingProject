@@ -121,3 +121,11 @@ canvas {
 #expenses h2 {
     margin-bottom: 10px;
 }
+.charts-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensure the section takes up the full height */
+}
+
+

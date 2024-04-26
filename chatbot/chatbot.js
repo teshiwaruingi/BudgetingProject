@@ -4,6 +4,11 @@ const conversation = document.getElementById('conversation');
 const inputForm = document.getElementById('input-form');
 const inputField = document.getElementById('input-field');
 
+
+const API_Key = "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";
+
+
+
 // Add event listener to input form
 inputForm.addEventListener('submit', function(event) {
   // Prevent form submission
@@ -24,6 +29,7 @@ inputForm.addEventListener('submit', function(event) {
 
   // Generate chatbot response
   const response = generateResponse(input);
+
 
   // Add chatbot response to conversation
   message = document.createElement('div');
@@ -51,29 +57,32 @@ function generateResponse(input) {
         "I'm here to assist you with any questions or problems you may have. How can I help you today? 💡",
     ];
 
+
     // Questions and Responses
     const hardcodedQuestions = [
         {
-            question: "Would it be wise to buy a $150 pair of shoes today?",
-            response: "Let me check your account balance... Based on your current balance of $37, it might not be advisable to make that purchase right now."
+            question: "Would it be wise to buy a $350 pair of shoes today?",
+            response: "Let me check your account balance... Based on your current balance of $217, it might not be advisable to make that purchase right now."
         },
         {
             question: "Can I afford to go out for dinner tonight?",
             response: "Let me check your recent transactions and account balance... With your current balance and recent spending, dining out might not be within your budget at the moment."
         },
         {
-            question: "How much money do I have left until my next paycheck?",
-            response: "Let me calculate that for you based on your upcoming expenses and current balance... It looks like you have approximately $200 left until your next paycheck."
+            question: "What is the balance on my checking and savings account?",
+            response: "Checking : $217 \n Savings: $300"
         },
         {
-            question: "I'm thinking of booking a vacation. Can I afford it?",
-            response: "Let me analyze your recent spending habits and account balance... Based on your current financial situation, it might be better to save up a bit more before booking a vacation."
+            question: "What is my networth?",
+            response: "Your networth is $517."
         },
         {
-            question: "Should I make a large purchase today?",
-            response: "Let me review your account... Considering your current balance and upcoming expenses, it might be best to hold off on making a large purchase right now."
+            question: "If I make $100 a week for the next 4 months, what is my projected networth?",
+            response: "Your projected network is $2,117 after the months"
         }
     ];
+
+
 
     // Check if the input matches any hardcoded question
     const matchedQuestion = hardcodedQuestions.find(q => input.toLowerCase().includes(q.question.toLowerCase()));
@@ -89,3 +98,33 @@ function generateResponse(input) {
 
   
   
+function YNAB() {
+    return new Promise((resolve, reject) => {
+        // Simulating a delay to mimic network latency
+        setTimeout(() => {
+            // Simulated response data
+            const responseData = {
+                id: 1,
+                name: "Budget Data",
+                description: "This is just budget data for testing purposes."
+            };
+
+            // Simulate successful response
+            resolve(responseData);
+            
+            // Simulate error response
+            // reject(new Error("Failed to fetch data"));
+        }, 1000); // Simulating a delay of 1 second
+    });
+}
+
+// Example usage:
+YNAB()
+    .then(response => {
+        console.log("YNAB Response:", response);
+        // Do something with the response data
+    })
+    .catch(error => {
+        console.error("YNAB Error:", error);
+        // Handle the error
+    });

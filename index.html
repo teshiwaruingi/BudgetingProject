@@ -10,16 +10,19 @@
     <header>
         <nav>
             <ul>
+                <li><a href="getstarted.html">Home</a></li>
                 <li><a href="index.html">Dashboard</a></li>
                 <li><a href="badges.html">Badges</a></li>
                 <li><a href="budget.html">My Budget</a></li> 
+                <li><a href="Survey.html">Survey</a></li>
             </ul>
         </nav>
         <h1>Budgeting & Net Worth Tracker</h1>
     </header>
     <main>
         <section>
-            <h2>Current Networth</h2>
+            <h2 id="netWorth">Current Networth</h2>
+            <button onclick="sendSMS()">Financial Standing Check</button>
         </section>
         <section class="charts-container">
             <canvas id="pieChart" width="400" height="400"></canvas>
@@ -34,22 +37,25 @@
             <section id="assets">
                 <h2>Assets</h2>
                 <div id="savings">
-                    <label for="savings">Savings Account:</label>
+                    <!-- <label for="savings">Savings Account:</label> -->
                     <!-- <input type="number" id="savingsAmount" placeholder="Enter amount"> -->
                 </div>
                 <div id="checking">
-                    <label for="checking">Checking Account:</label>
+                    <!-- <label for="checking">Checking Account:</label> -->
                     <!-- <input type="number" id="checkingAmount" placeholder="Enter amount"> -->
                 </div>
                 <div id="investment">
-                    <label for="investment">Investment Account:</label>
+                    <!-- <label for="investment">Investment Account:</label> -->
                     <!-- <input type="number" id="investmentAmount" placeholder="Enter amount"> -->
                 </div>
                 <!-- <button onclick="saveData()">Save</button> -->
             </section>
             <section id="liabilities">
                 <h2>Liabilities</h2>
-                <div id="liabilityInputs">
+                <div id="loanAmount">
+                    <!-- Inputs for liabilities will be added dynamically -->
+                </div>
+                <div id="creditCardAmount">
                     <!-- Inputs for liabilities will be added dynamically -->
                 </div>
                 <!-- <button onclick="addLiabilityInput()">Add Liability</button> -->
@@ -69,17 +75,69 @@
             </div>
             <!-- <button onclick="addBudgetInput()">Add Budget Category</button> -->
         </section>
-        <div id="netWorth"></div>
+        
     </main>
     <!-- Include Chart.js from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
+    <script src="sms.js"></script>
     <script>
         // Display pie chart and bar chart immediately
         fetchAssets();
         fetchExpenses();
         fetchBudgets();
         displayBarChart();
+    </script>
+    <script>
+        fetch('./finance_data.json')
+            .then(res => res.json())
+            .then(data => {
+                const financialData = data;
+
+        
+        // Populate assets section
+        document.getElementById('savings').innerHTML += `<label for="savings">Savings Account: $${financialData.assets.savings}</label>`;
+        document.getElementById('checking').innerHTML += `<label for="checking">Checking Account: $${financialData.assets.checking}</label>`;
+        document.getElementById('investment').innerHTML += `<label for="investment">Investment Account: $${financialData.assets.investment}</label>`;
+
+        // Populate liabilities section
+        document.getElementById('loanAmount').innerHTML += `<label for="loan">Loan Amount: $${financialData.liabilities.loan}</label>`;
+        document.getElementById('creditCardAmount').innerHTML += `<label for="creditCard">Credit Card Amount: $${financialData.liabilities.credit_card}</label>`;
+
+        // Populate expenses section
+        const expenseInputsDiv = document.getElementById('expenseInputs');
+        financialData.expenses.forEach(expense => {
+            const div = document.createElement('div');
+            div.innerHTML = `<label>${expense.name}:</label> $${expense.amount}`;
+            expenseInputsDiv.appendChild(div);
+        });
+
+        // Calculate net worth
+        const assetsTotal = Object.values(financialData.assets).reduce((total, amount) => total + amount, 0);
+        const liabilitiesTotal = Object.values(financialData.liabilities).reduce((total, amount) => total + amount, 0);
+        const netWorth = assetsTotal - liabilitiesTotal;
+
+        // Display net worth
+        document.getElementById('netWorth').innerHTML = `<section><h2>Current Net Worth: $${netWorth}</h2></section>`;
+    });
+        
+    </script>
+    <script>
+        function sendSMS() {
+            const accountSid = 'something';
+            const authToken = 'something';
+            const client = require('twilio')(accountSid, authToken);
+
+            client.messages
+                .create({
+                    body: 'Hello from Twilio',
+                    from: '+18777503771',
+                    to: '+18777804236'
+                })
+                .then(message => console.log(message.sid))
+                .done();
+
+}   
     </script>
 </body>
 </html>

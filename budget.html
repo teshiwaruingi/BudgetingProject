@@ -16,17 +16,18 @@
                 <li><a href="budget.html">My Budget</a></li> 
                 <li><a href="Survey.html">Survey</a></li>
                 <li><a href="faq.html">FAQ</a></li>
+                <li><a href="chatbot/index.html">Chatbot</a></li>
             </ul>
         </nav>
         <h1>My Budget</h1>
     </header>
     <main>
         <section id="budget">
-            <h2>My Monthly Budget</h2>
-            <div id="budgetDetails">
-                <!-- Budget details will be displayed here -->
-            </div>
-            <button onclick="editBudget()">Edit Budget</button>
+            <h2>Budget Editor</h2>
+            <!-- <div id="budgetDetails">
+                Budget details will be displayed here
+            </div> -->
+            <button onclick="clearStorage()">clear storage</button>
         </section>
     
         <section class="assets-liabilities-container">
@@ -79,29 +80,23 @@
                 <h2>Bank Accounts</h2>
                 <form class="form">
                     <div id="savings">
-                        <label for="savings">Savings Account:</label>
-                        <input type="number" id="savingsAmount" placeholder="Enter amount">
+                        <label for="accountType">Account Type:</label>
+                        <input type="text" id="accountType" placeholder="Enter account type">
+                        <label for="accountAmount">Amount:</label>
+                        <input type="number" id="accountAmount" placeholder="Enter amount">
                     </div>
-                    <div id="checking">
-                        <label for="checking">Checking Account:</label>
-                        <input type="number" id="checkingAmount" placeholder="Enter amount">
-                    </div>
-                    <div id="investment">
-                        <label for="investment">Investment Account:</label>
-                        <input type="number" id="investmentAmount" placeholder="Enter amount">
-                    </div>
-                    <button onclick="saveData()">Save</button>
+                    <button onclick="saveAccounts()">Save Account</button>
                 </form>
                 
             </section>
         
-            <section id="budgetCategories">
+            <!-- <section id="budgetCategories">
                 <h2>Budget Tracker</h2>
                 <div id="budgetInputs">
-                    <!-- Inputs for budget categories will be added dynamically -->
+                     Inputs for budget categories will be added dynamically
                 </div>
                 <button onclick="addBudgetInput()">Add Budget Category</button>
-            </section>
+            </section> -->
         </section>
 
     </main>
@@ -110,67 +105,105 @@
         function addAsset() {
             const amount = parseFloat(document.getElementById('savingsAmount').value);
             const assetType = document.getElementById('assetType').value;
-            const financeData = JSON.parse(localStorage.getItem('financeData')) || { assets: {}, liabilities: {}, expenses: [], budgets: [] };
+            
+            // Retrieve existing data from localStorage or initialize an empty object
+            let financeData = JSON.parse(localStorage.getItem('financeData')) || { assets: {}, liabilities: {}, expenses: {}, accounts: {}};
+            
+            // Add the new asset to the assets object
             financeData.assets[assetType] = amount;
+            
+            // Update localStorage with the modified financeData
             localStorage.setItem('financeData', JSON.stringify(financeData));
-            alert('Asset added successfully!');
-        }
+            
+            // Display the input values
+            alert(`Asset added successfully!\nAsset Type: ${assetType}\nAmount: ${amount}`);
+}
+
 
         // Function to add an expense
         function addExpense() {
             const amount = parseFloat(document.getElementById('expenseAmount').value);
             const expenseType = document.getElementById('expenseType').value;
-            const financeData = JSON.parse(localStorage.getItem('financeData')) || { assets: {}, liabilities: {}, expenses: [], budgets: [] };
-            financeData.expenses.push({ type: expenseType, amount: amount });
+
+            let financeData = JSON.parse(localStorage.getItem('financeData')) || { assets: {}, liabilities: {}, expenses: {}, accounts: {}};
+
+            financeData.expenses[expenseType] = amount;
+
             localStorage.setItem('financeData', JSON.stringify(financeData));
-            alert('Expense added successfully!');
+
+            alert(`Expense added successfully!\nExpense Type: ${expenseType}\nAmount: ${amount}`);
         }
 
         // Function to add a liability
         function addLiability() {
             const amount = parseFloat(document.getElementById('loanAmount').value);
             const liabilityType = document.getElementById('liabilityType').value;
-            const financeData = JSON.parse(localStorage.getItem('financeData')) || { assets: {}, liabilities: {}, expenses: [], budgets: [] };
+
+            let financeData = JSON.parse(localStorage.getItem('financeData')) || { assets: {}, liabilities: {}, expenses: {}, accounts: {}};
+
             financeData.liabilities[liabilityType] = amount;
+
             localStorage.setItem('financeData', JSON.stringify(financeData));
-            alert('Liability added successfully!');
+
+            alert(`Liability added successfully!\nAsset Type: ${liabilityType}\nAmount: ${amount}`);
         }
 
-        // Function to append new data to the finance_data.json file
-        function appendData(newData) {
-            fetch('./finance_data.json')
-                .then(res => res.json())
-                .then(existingData => {
-                    // Merge existing data with new data
-                    const updatedData = { ...existingData, ...newData };
-
-                    // Save updated data to the file
-                    saveData(updatedData);
-                })
-                .catch(error => {
-                    console.error('Error appending data:', error);
-                });
+        function clearStorage() {
+            localStorage.clear();
         }
+
+        function saveAccounts() {
+            const amount = parseFloat(document.getElementById('accountAmount').value);
+            const accountType = document.getElementById('accountType').value;
+
+            let financeData = JSON.parse(localStorage.getItem('financeData')) || { assets: {}, liabilities: {}, expenses: {}, accounts: {} };
+            // Create an object to store the banking information
+            
+            financeData.accounts[accountType] = amount;
+
+            localStorage.setItem('financeData', JSON.stringify(financeData));
+
+            // Provide feedback to the user
+            alert(`Banking information saved successfully! \nAcount Type: ${accountType}\nAmount: ${amount}`);
+        }
+
+
+
+        // // Function to append new data to the finance_data.json file
+        // function appendData(newData) {
+        //     fetch('./finance_data.json')
+        //         .then(res => res.json())
+        //         .then(existingData => {
+        //             // Merge existing data with new data
+        //             const updatedData = { ...existingData, ...newData };
+
+        //             // Save updated data to the file
+        //             saveData(updatedData);
+        //         })
+        //         .catch(error => {
+        //             console.error('Error appending data:', error);
+        //         });
+        // }
 
         // Function to save data to the finance_data.json file
-        function saveData(data) {
-            fetch('./finance_data.json', {
-                method: 'PUT', // Use PUT method to update data
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data) // Convert data to JSON format
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                console.log('Data saved successfully');
-            })
-            .catch(error => {
-                console.error('Error saving data:', error);
-            });
-        }
+        // function saveData(data) {
+        //     fetch('./finance_data.json', {
+        //         method: 'PUT', // Use PUT method to update data
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(data) // Convert data to JSON format
+        //     })
+        //     .then(response => {
+        //         if (!response.ok) {
+        //             throw new Error('Network response was not ok');
+        //         }
+        //         console.log('Data saved successfully');
+        //     })
+        //     .catch(error => {
+        //         console.error('Error saving data:', error);
+        //     });
+        // }
 
     </script>
 </body>

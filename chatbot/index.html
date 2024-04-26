@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+        <ul>
+            <li><a href="/getstarted.html">Home</a></li>
+            <li><a href="/index.html">Dashboard</a></li>
+            <li><a href="/badges.html">Badges</a></li>
+            <li><a href="/budget.html">My Budget</a></li> 
+            <li><a href="/Survey.html">Survey</a></li>
+        </ul>
+    </nav>
+    <h1>My Budget</h1>
+</header>
+
+  <main>
+    <div class="chatbot-container">
+        <div id="header">
+            <h1>Chatbot</h1>
+        </div>
+        <div id="chatbot">
+            <div id="conversation">
+              <div class="chatbot-message">
+                <p class="chatbot-text">Hi! 👋 it's great to see you!</p>
+              </div>
+            </div>
+            <form id="input-form">
+              <message-container>
+                <input id="input-field" type="text" placeholder="Type your message here">
+                <button id="submit-button" type="submit">
+                  <img class="send-icon" src="send-message.png" alt="">
+                </button>
+              </message-container>
+                
+            </form>
+        </div>  
+
+    </div>
+
+    <script src="chatbot.js"></script>
+  </main>
+</body>
+</html>
